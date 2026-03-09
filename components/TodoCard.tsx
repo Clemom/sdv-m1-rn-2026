@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-  Pressable,
-  StyleProp,
-  StyleSheet,
-  Text,
-  TextStyle,
-  View,
-  ViewStyle,
-} from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 interface TodoCardProps {
   title: string;
@@ -16,16 +8,17 @@ interface TodoCardProps {
 
 export default function TodoCard({ title, completed }: TodoCardProps) {
   const [isCompleted, setIsCompleted] = useState(completed);
-  const cardStyle: StyleProp<ViewStyle> = [styles.card];
-  const titleStyle: StyleProp<TextStyle> = [styles.paragraph];
-  if (isCompleted) {
-    cardStyle.push(styles.cardDone);
-    titleStyle.push(styles.paragraphDone);
-  }
   return (
     <Pressable onPress={() => setIsCompleted(!isCompleted)}>
-      <View style={cardStyle}>
-        <Text style={titleStyle}>{title}</Text>
+      <View style={[styles.card, isCompleted ? styles.cardDone : undefined]}>
+        <Text
+          style={[
+            styles.paragraph,
+            isCompleted ? styles.paragraphDone : undefined,
+          ]}
+        >
+          {title}
+        </Text>
         <Text>{isCompleted ? "Fait" : "A faire"}</Text>
       </View>
     </Pressable>
