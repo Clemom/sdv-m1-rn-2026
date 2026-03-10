@@ -1,25 +1,5 @@
-import TodoList from "@/components/todolist/TodoList";
-import { Stack, useRouter } from "expo-router";
-import { Button } from "react-native";
+import { Redirect } from "expo-router";
 
-export default function Index() {
-  const router = useRouter();
-  return (
-    <>
-      <Stack.Screen
-        options={{
-          title: "TODO-list",
-          headerRight: () => (
-            <Button
-              onPress={() => {
-                router.navigate("/edit");
-              }}
-              title="Créer"
-            />
-          ),
-        }}
-      />
-      <TodoList />
-    </>
-  );
+export default function RootIndex() {
+  return <Redirect href="/(tabs)/list" />;
 }
